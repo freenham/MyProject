@@ -28,5 +28,31 @@ public class World {
 			}
 		}
 	}
-
+	
+	public int getWidth() {
+		return map[0].length;
+	}
+	
+	public int getHeight() {
+		return map.length;
+	}
+	
+	public Object getOccupant(Coordinates c) {
+		if(isLocationOccupied(c))
+			return map[c.getX()][c.getY()];
+		else
+			return null;
+	}
+	
+	public boolean isLocationValid(Coordinates c){
+			return c.getX()<map[0].length && c.getY()<map.length;
+	}
+	public boolean isLocationOccupied(Coordinates c) {
+		return map[c.getX()][c.getY()] != null;
+	}
+	
+	public boolean setOccupant(Object map,Coordinates c) {
+		return false;
+	}
+		
 }
