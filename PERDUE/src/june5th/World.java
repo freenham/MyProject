@@ -91,16 +91,15 @@ public class World {
 	public String drawTeamMap(Boat[] b, int viewType) {
 		String s = "";
 		for (int i = 0; i <= getHeight(); i++) {
-			s += "\n"+(char)(64+i)+" ";
-			
+			s += "\n" + (char) (64 + i) + " ";
+
 			for (int j = 0; j <= getWidth(); j++) {
 				if (i == 0) {
-					s += " "+j+" ";
-				} else 
+					s += " " + j + " ";
+				} else
 					s += "###";
-				
 			}
-			
+
 		}
 		return s;
 	}
