@@ -8,59 +8,59 @@ public class World {
 	public final static int SOUTHEAST = 3;
 	public final static int SOUTH = 4;
 	public final static int SOUTHWEST = 5;
-	public final static int WEST= 6;
+	public final static int WEST = 6;
 	public final static int NORTHWEST = 7;
-	
+
 	public World(int width, int height) {
-		if(width <= 4)
+		if (width <= 4)
 			width = 4;
-		else if(width >= 10)
+		else if (width >= 10)
 			width = 10;
-		if(height <= 4)
+		if (height <= 4)
 			height = 4;
-		else if(height >= 10)
+		else if (height >= 10)
 			height = 10;
 		map = new Object[height][width];
-		
-		for(int i=0;i<map.length;i++) {
-			for(int j=0;j<map[0].length;j++) {
+
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
 				map[i][j] = null;
 			}
 		}
 	}
-	
+
 	public int getWidth() {
 		return map[0].length;
 	}
-	
+
 	public int getHeight() {
 		return map.length;
 	}
-	
+
 	public Object getOccupant(Coordinates c) {
-		if(isLocationOccupied(c))
+		if (isLocationOccupied(c))
 			return map[c.getX()][c.getY()];
 		else
 			return null;
 	}
-	
-	public boolean isLocationValid(Coordinates c){
-			return c.getX()<map[0].length && c.getY()<map.length;
+
+	public boolean isLocationValid(Coordinates c) {
+		return c.getX() < map[0].length && c.getY() < map.length;
 	}
+
 	public boolean isLocationOccupied(Coordinates c) {
 		return map[c.getX()][c.getY()] != null;
 	}
-	
-	public boolean setOccupant(Object boat,Coordinates c) {
-		if(!isLocationOccupied(c)) {
+
+	public boolean setOccupant(Object boat, Coordinates c) {
+		if (!isLocationOccupied(c)) {
 			map[c.getY()][c.getX()] = boat;
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
-	
-	public Coordinates getAdjacentLocation(Coordinates c,int direction) {
+
+	public Coordinates getAdjacentLocation(Coordinates c, int direction) {
 		int x = c.getX();
 		int y = c.getY();
 		if (direction == World.NORTH)
@@ -87,10 +87,27 @@ public class World {
 		Coordinates ac = new Coordinates(x, y);
 		return ac;
 	}
-	
-	public String drawTeamMap(Boat[] b,int viewType) {
-		
-		
+
+	public String drawTeamMap(Boat[] b, int viewType) {
+		String s = "";
+		for (int i = 0; i <= getHeight(); i++) {
+			s += "\n"+(char)(64+i)+" ";
+			
+			for (int j = 0; j <= getWidth(); j++) {
+				if (i == 0) {
+					s += " "+j+" ";
+				} else 
+					s += "###";
+				
+			}
+			
+		}
+		return s;
 	}
-		
+
+	public static void main(String[] a) {
+		World w = new World(10, 10);
+		System.out.println(w.drawTeamMap(null, EAST));
+	}
+
 }
