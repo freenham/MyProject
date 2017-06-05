@@ -51,45 +51,8 @@ public class World {
 		return map[c.getX()][c.getY()] != null;
 	}
 	
-	public boolean setOccupant(Object boat,Coordinates c) {
-		if(!isLocationOccupied(c)) {
-			map[c.getY()][c.getX()] = boat;
-			return true;
-		}
-		else
-			return false;
-	}
-	
-	public Coordinates getAdjacentLocation(Coordinates c,int direction) {
-		int x = c.getX();
-		int y = c.getY();
-		if (direction == World.NORTH)
-			y--;
-		else if (direction == World.NORTHEAST) {
-			x++;
-			y--;
-		} else if (direction == World.EAST)
-			x++;
-		else if (direction == World.SOUTHEAST) {
-			x++;
-			y++;
-		} else if (direction == World.SOUTH)
-			y++;
-		else if (direction == World.SOUTHWEST) {
-			x--;
-			y++;
-		} else if (direction == World.WEST)
-			x--;
-		else if (direction == World.NORTHWEST) {
-			x--;
-			y--;
-		}
-		Coordinates ac = new Coordinates(x, y);
-		return ac;
-	}
-	
-	public String drawTeamMap(Boat[] b,int viewType) {
-		
+	public boolean setOccupant(Object map,Coordinates c) {
+		return false;
 	}
 		
 }
