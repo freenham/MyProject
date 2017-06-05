@@ -2,14 +2,14 @@ package june5th;
 
 public class World {
 	Object[][] map;
-	public static int NORTH = 0;
-	public static int NORTHEAST = 1;
-	public static int EAST = 2;
-	public static int SOUTHEAST = 3;
-	public static int SOUTH = 4;
-	public static int SOUTHWEST = 5;
-	public static int WEST= 6;
-	public static int NORTHWEST = 7;
+	public final static int NORTH = 0;
+	public final static int NORTHEAST = 1;
+	public final static int EAST = 2;
+	public final static int SOUTHEAST = 3;
+	public final static int SOUTH = 4;
+	public final static int SOUTHWEST = 5;
+	public final static int WEST= 6;
+	public final static int NORTHWEST = 7;
 	
 	public World(int width, int height) {
 		if(width <= 4)
