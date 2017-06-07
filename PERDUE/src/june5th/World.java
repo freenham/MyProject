@@ -106,7 +106,7 @@ public class World {
 			}
 		}
 		
-		if (viewType == 2) {
+		else if (viewType == 2) {
 
 			for (int y = 0; y < getHeight(); y++) {
 				s += "" + (char) (64 + y) + " ";
@@ -115,7 +115,29 @@ public class World {
 						s += " " + (x + 1) + " ";
 					} 
 					else if(x==b[0].getLocation().getX()-1 && y==b[0].getLocation().getY()) {
-						s += ""+b[0].getDirection()+b[0].getID()+b[0].getHealth();
+						s += ""+b[0].getDirection()+b[0].getID()+b[0].getTeam();
+					}
+					else if((x>=b[0].getLocation().getX()-1-b[0].getVision() && x<=b[0].getLocation().getX()-1+b[0].getVision())
+							&& (y>=b[0].getLocation().getY()-b[0].getVision() && y<=b[0].getLocation().getY()+b[0].getVision())) {
+						s += "~~~";
+					}
+					else if (y != 0) {
+						s += "###";
+					}
+				}
+				s += "\n";
+			}
+		}
+		else if (viewType == 3) {
+
+			for (int y = 0; y < getHeight(); y++) {
+				s += "" + (char) (64 + y) + " ";
+				for (int x = 0; x < getWidth(); x++) {
+					if (y == 0) {
+						s += " " + (x + 1) + " ";
+					} 
+					else if(x==b[0].getLocation().getX()-1 && y==b[0].getLocation().getY()) {
+						s += ""+b[0].getHealth()+b[0].getID()+b[0].getTeam();
 					}
 					else if((x>=b[0].getLocation().getX()-1-b[0].getVision() && x<=b[0].getLocation().getX()-1+b[0].getVision())
 							&& (y>=b[0].getLocation().getY()-b[0].getVision() && y<=b[0].getLocation().getY()+b[0].getVision())) {
@@ -136,6 +158,6 @@ public class World {
 		Boat[] b = new Boat[1];
 		Boat bs = new BattleShip(1, new Coordinates(4, 4), World.NORTH, 5, 2, 2);
 		b[0] = bs;
-		System.out.println(w.drawTeamMap(b, 2));
+		System.out.println(w.drawTeamMap(b, 3));
 	}
 }
