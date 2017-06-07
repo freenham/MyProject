@@ -89,7 +89,6 @@ public class World {
 	}
 	
 	public String drawTeamMap(Boat[] b,int viewType) {
-		return "1";
 		
 		
 	}
