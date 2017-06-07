@@ -92,7 +92,7 @@ public class World {
 		String s = "";
 		if (viewType == 1) {
 
-			for (int y = 0; y < getHeight(); y++) {
+			for (int y = 0; y <= getHeight(); y++) {
 				s += "" + (char) (64 + y) + " ";
 				for (int x = 0; x < getWidth(); x++) {
 					if (y == 0) {
@@ -108,7 +108,7 @@ public class World {
 		
 		else if (viewType == 2) {
 
-			for (int y = 0; y < getHeight(); y++) {
+			for (int y = 0; y <= getHeight(); y++) {
 				s += "" + (char) (64 + y) + " ";
 				for (int x = 0; x < getWidth(); x++) {
 					if (y == 0) {
@@ -130,7 +130,7 @@ public class World {
 		}
 		else if (viewType == 3) {
 
-			for (int y = 0; y < getHeight(); y++) {
+			for (int y = 0; y <= getHeight(); y++) {
 				s += "" + (char) (64 + y) + " ";
 				for (int x = 0; x < getWidth(); x++) {
 					if (y == 0) {
@@ -156,7 +156,7 @@ public class World {
 	public static void main(String[] args) {
 		World w = new World(10, 10);
 		Boat[] b = new Boat[1];
-		Boat bs = new BattleShip(1, new Coordinates(4, 4), World.NORTH, 5, 2, 2);
+		Boat bs = new BattleShip(1, new Coordinates(1, 1), World.NORTH, 5, 2, 1);
 		b[0] = bs;
 		System.out.println(w.drawTeamMap(b, 3));
 	}
