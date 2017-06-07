@@ -90,6 +90,22 @@ public class World {
 
 	public String drawTeamMap(Boat[] b, int viewType) {
 		String s = "";
+		if (viewType == 1) {
+
+			for (int y = 0; y < getHeight(); y++) {
+				s += "" + (char) (64 + y) + " ";
+				for (int x = 0; x < getWidth(); x++) {
+					if (y == 0) {
+						s += " " + (x + 1) + " ";
+					} 
+					else if (y != 0) {
+						s += "###";
+					}
+				}
+				s += "\n";
+			}
+		}
+		
 		if (viewType == 2) {
 
 			for (int y = 0; y < getHeight(); y++) {
@@ -111,7 +127,6 @@ public class World {
 				}
 				s += "\n";
 			}
-			return s;
 		}
 		return s;
 	}
@@ -123,5 +138,4 @@ public class World {
 		b[0] = bs;
 		System.out.println(w.drawTeamMap(b, 2));
 	}
-
 }
