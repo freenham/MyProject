@@ -158,6 +158,6 @@ public class World {
 		Boat[] b = new Boat[1];
 		Boat bs = new BattleShip(1, new Coordinates(1, 1), World.NORTH, 5, 2, 1);
 		b[0] = bs;
-		System.out.println(w.drawTeamMap(b, 3));
+		System.out.println(w.drawTeamMap(b, 1));
 	}
 }
