@@ -90,15 +90,24 @@ public class World {
 
 	public String drawTeamMap(Boat[] b, int viewType) {
 		String s = "";
-		if (viewType == 1) {
+		if (viewType == 2) {
 
-			for (int r = 0; r < getHeight(); r++) {
-				s += "" + (char) (64 + r) + " ";
-				for (int c = 0; c < getWidth(); c++) {
-					if (r == 0) {
-						s += " " + (c + 1) + " ";
-					} else
+			for (int y = 0; y < getHeight(); y++) {
+				s += "" + (char) (64 + y) + " ";
+				for (int x = 0; x < getWidth(); x++) {
+					if (y == 0) {
+						s += " " + (x + 1) + " ";
+					} 
+					else if(x==b[0].getLocation().getX()-1 && y==b[0].getLocation().getY()) {
+						s += ""+b[0].getDirection()+b[0].getID()+b[0].getHealth();
+					}
+					else if((x>=b[0].getLocation().getX()-1-b[0].getVision() && x<=b[0].getLocation().getX()-1+b[0].getVision())
+							&& (y>=b[0].getLocation().getY()-b[0].getVision() && y<=b[0].getLocation().getY()+b[0].getVision())) {
+						s += "~~~";
+					}
+					else if (y != 0) {
 						s += "###";
+					}
 				}
 				s += "\n";
 			}
@@ -110,7 +119,9 @@ public class World {
 	public static void main(String[] args) {
 		World w = new World(10, 10);
 		Boat[] b = new Boat[1];
-		System.out.println(w.drawTeamMap(b, 1));
+		Boat bs = new BattleShip(1, new Coordinates(4, 4), World.NORTH, 5, 2, 2);
+		b[0] = bs;
+		System.out.println(w.drawTeamMap(b, 2));
 	}
 
 }
