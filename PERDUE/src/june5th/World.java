@@ -89,9 +89,25 @@ public class World {
 	}
 	
 	public String drawTeamMap(Boat[] b,int viewType) {
-		return "1";
-		
-		
+		String s="";
+		for(int r=0;r<getHeight();r++) {
+			s += ""+(char)(64+r)+" ";
+			for(int c=0;c<getWidth();c++) {
+				if(r==0) {
+					s += " "+(c+1)+" ";
+				}
+				else
+					s += "###";
+			}
+			s += "\n";
+		}
+		return s;
+	}
+	
+	public static void main(String[] args) {
+		World w = new World(10,10);
+		Boat[] b = new Boat[1];
+		System.out.println(w.drawTeamMap(b, 1));
 	}
 		
 }
