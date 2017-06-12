@@ -65,39 +65,51 @@ public abstract class Boat {
 	public abstract String getAction();
 
 	public String move(World world) {
-		Coordinates c = location;
-		int x = c.getX();
-		int y = c.getY();
-		if (direction == World.NORTH)
-			y--;
-		else if (direction == World.NORTHEAST) {
-			x++;
-			y--;
-		} else if (direction == World.EAST)
-			x++;
-		else if (direction == World.SOUTHEAST) {
-			x++;
-			y++;
-		} else if (direction == World.SOUTH)
-			y++;
-		else if (direction == World.SOUTHWEST) {
-			x--;
-			y++;
-		} else if (direction == World.WEST)
-			x--;
-		else if (direction == World.NORTHWEST) {
-			x--;
-			y--;
+		if(world.getAdjacentLocation(location, direction) == null) {
+			return getID() + "cannot move off the map.";
 		}
-		Coordinates ac = new Coordinates(x, y);
-		if (world.isLocationOccupied(ac))
-			return String.format("%s cannot move to %c%c as it is occupied.", toString(), (char) (y + 65), (char) (x + 48),
-					x, y);
-		else if (!world.isLocationValid(ac))
-			return String.format("%s cannot move off the map.", toString());
-		else
-			return String.format("%s moves from %c%c to %c%c", toString(), (char) (c.getY() + 65), (char) (c.getX() + 48),
-					(char) (ac.getY() + 65), (char) (ac.getX() + 48));
+		if(world.isLocationOccupied(world.getAdjacentLocation(location, direction))) {
+			return getID() + "cannot move to "+
+		world.getAdjacentLocation(location, direction).toString() +
+		"as it is occupied.";
+		}
+		Coordinates c = location;
+		location = world.getAdjacentLocation(location, direction);
+		world.setOccupant(null, c);
+		world.setOccupant(this, location);
+		return getID()+"move from"+c.toString() + "to" +location.toString()+".";
+//		int x = c.getX();
+//		int y = c.getY();
+//		if (direction == World.NORTH)
+//			y--;
+//		else if (direction == World.NORTHEAST) {
+//			x++;
+//			y--;
+//		} else if (direction == World.EAST)
+//			x++;
+//		else if (direction == World.SOUTHEAST) {
+//			x++;
+//			y++;
+//		} else if (direction == World.SOUTH)
+//			y++;
+//		else if (direction == World.SOUTHWEST) {
+//			x--;
+//			y++;
+//		} else if (direction == World.WEST)
+//			x--;
+//		else if (direction == World.NORTHWEST) {
+//			x--;
+//			y--;
+//		}
+//		Coordinates ac = new Coordinates(x, y);
+//		if (world.isLocationOccupied(ac))
+//			return String.format("%s cannot move to %c%c as it is occupied.", toString(), (char) (y + 65), (char) (x + 48),
+//					x, y);
+//		else if (!world.isLocationValid(ac))
+//			return String.format("%s cannot move off the map.", toString());
+//		else
+//			return String.format("%s moves from %c%c to %c%c", toString(), (char) (c.getY() + 65), (char) (c.getX() + 48),
+//					(char) (ac.getY() + 65), (char) (ac.getX() + 48));
 	}
 	public String turn(int dic) {
 		String d="";

@@ -28,7 +28,8 @@ public class Coordinates {
 	}
 
 	public String toString() {
-		return String.format("\"%c%c\" // x = %d, y = %d", (char) (y + 65), (char) (x + 48), x, y);
+//		return String.format("\"%c%c\" // x = %d, y = %d", (char) (y + 65), (char) (x + 48), x, y);
+		return (char)(y+'A') + "" +(x+1);
 
 	}
 }

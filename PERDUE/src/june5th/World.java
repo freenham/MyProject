@@ -12,15 +12,15 @@ public class World {
 	public final static int NORTHWEST = 7;
 
 	public World(int width, int height) {
-		if (width <= 4)
+		if (width < 4)
 			width = 4;
-		else if (width >= 10)
+		else if (width > 10)
 			width = 10;
-		if (height <= 4)
+		if (height < 4)
 			height = 4;
-		else if (height >= 10)
+		else if (height > 10)
 			height = 10;
-		map = new Object[height + 1][width + 1];
+		map = new Boat[height][width];
 
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[0].length; j++) {
@@ -30,18 +30,15 @@ public class World {
 	}
 
 	public int getWidth() {
-		return map[0].length;
-	}
-
-	public int getHeight() {
 		return map.length;
 	}
 
+	public int getHeight() {
+		return map[0].length;
+	}
+
 	public Object getOccupant(Coordinates c) {
-		if (isLocationOccupied(c))
-			return map[c.getX()][c.getY()];
-		else
-			return null;
+		return map[c.getX()][c.getY()];
 	}
 
 	public boolean isLocationValid(Coordinates c) {
@@ -52,8 +49,8 @@ public class World {
 		return map[c.getX()][c.getY()] != null;
 	}
 
-	public boolean setOccupant(Object boat, Coordinates c) {
-		if (!isLocationOccupied(c)) {
+	public boolean setOccupant(Boat boat, Coordinates c) {
+		if (!isLocationOccupied(c) && isLocationValid(c)) {
 			map[c.getY()][c.getX()] = boat;
 			return true;
 		} else
@@ -85,81 +82,12 @@ public class World {
 			y--;
 		}
 		Coordinates ac = new Coordinates(x, y);
-		return ac;
+		if (isLocationValid(ac))
+			return ac;
+		return null;
 	}
 
 	public String drawTeamMap(Boat[] b, int viewType) {
-		// Boolean flag = false;
-		// String s = "";
-		// if (viewType == 1) {
-		//
-		// for (int y = 0; y <= getHeight(); y++) {
-		// s += "" + (char) (64 + y) + " ";
-		// for (int x = 0; x < getWidth(); x++) {
-		// if (y == 0) {
-		// s += " " + (x + 1) + " ";
-		// } else if (y != 0) {
-		// s += "###";
-		// }
-		// }
-		// s += "\n";
-		// }
-		// }
-		//
-		// else if (viewType == 2) {
-		//
-		// for (int y = 0; y <= getHeight(); y++) {
-		// s += "" + (char) (64 + y) + " ";
-		// for (int x = 0; x < getWidth(); x++) {
-		// if (y == 0) {
-		// s += " " + (x + 1) + " ";
-		// }
-		// flag = true;
-		// for (int i = 0; i < b.length; i++) {
-		// if (x == b[i].getLocation().getX() - 1 && y ==
-		// b[i].getLocation().getY()) {
-		// s += "" + b[i].getDirection() + b[0].getID() + b[i].getTeam();
-		// flag = false;
-		// } else if ((x >= b[i].getLocation().getX() - 1 - b[i].getVision()
-		// && x <= b[i].getLocation().getX() - 1 + b[i].getVision())
-		// && (y >= b[i].getLocation().getY() - b[i].getVision()
-		// && y <= b[i].getLocation().getY() + b[i].getVision())) {
-		// s += "~~~";
-		// flag = false;
-		// }
-		// }
-		// if (flag && y!=0) {
-		// s += "###";
-		// flag = true;
-		// }
-		//
-		// }
-		// s += "\n";
-		// }
-		// } else if (viewType == 3) {
-		//
-		// for (int y = 0; y <= getHeight(); y++) {
-		// s += "" + (char) (64 + y) + " ";
-		// for (int x = 0; x < getWidth(); x++) {
-		// if (y == 0) {
-		// s += " " + (x + 1) + " ";
-		// } else if (x == b[0].getLocation().getX() - 1 && y ==
-		// b[0].getLocation().getY()) {
-		// s += "" + b[0].getHealth() + b[0].getID() + b[0].getTeam();
-		// } else if ((x >= b[0].getLocation().getX() - 1 - b[0].getVision()
-		// && x <= b[0].getLocation().getX() - 1 + b[0].getVision())
-		// && (y >= b[0].getLocation().getY() - b[0].getVision()
-		// && y <= b[0].getLocation().getY() + b[0].getVision())) {
-		// s += "~~~";
-		// } else if (y != 0) {
-		// s += "###";
-		// }
-		// }
-		// s += "\n";
-		// }
-		//
-		// }
-		// return s;
 		Boolean flag = false;
 		String s = "";
 		if (viewType == 1) {
@@ -194,8 +122,7 @@ public class World {
 					}
 				}
 			}
-		}
-		else if (viewType == 3) {
+		} else if (viewType == 3) {
 			for (int y = 0; y < getHeight(); y++) {
 				for (int x = 0; x < getWidth(); x++) {
 					for (int i = 0; i < b.length; i++) {
@@ -238,10 +165,10 @@ public class World {
 		Boat B1 = new BattleShip(1, new Coordinates(5, 10), World.NORTH, 4, 4, 1);
 
 		b[0] = D1;
-		 b[2] = C1;
-		 b[3] = S1;
-		 b[4] = A1;
-		 b[1] = B1;
+		b[2] = C1;
+		b[3] = S1;
+		b[4] = A1;
+		b[1] = B1;
 		System.out.println(w.drawTeamMap(b, 3));
 	}
 }
