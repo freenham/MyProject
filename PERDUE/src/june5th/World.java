@@ -90,18 +90,6 @@ public class World {
 
 	public String drawTeamMap(Boat[] b, int viewType) {
 		String s = "";
-<<<<<<< HEAD
-		for (int i = 0; i <= getHeight(); i++) {
-			s += "\n" + (char) (64 + i) + " ";
-
-			for (int j = 0; j <= getWidth(); j++) {
-				if (i == 0) {
-					s += " " + j + " ";
-				} else
-					s += "###";
-			}
-
-=======
 		if (viewType == 1) {
 
 			for (int y = 0; y <= getHeight(); y++) {
@@ -109,15 +97,14 @@ public class World {
 				for (int x = 0; x < getWidth(); x++) {
 					if (y == 0) {
 						s += " " + (x + 1) + " ";
-					} 
-					else if (y != 0) {
+					} else if (y != 0) {
 						s += "###";
 					}
 				}
 				s += "\n";
 			}
 		}
-		
+
 		else if (viewType == 2) {
 
 			for (int y = 0; y <= getHeight(); y++) {
@@ -125,54 +112,44 @@ public class World {
 				for (int x = 0; x < getWidth(); x++) {
 					if (y == 0) {
 						s += " " + (x + 1) + " ";
-					} 
-					else if(x==b[0].getLocation().getX()-1 && y==b[0].getLocation().getY()) {
-						s += ""+b[0].getDirection()+b[0].getID()+b[0].getTeam();
-					}
-					else if((x>=b[0].getLocation().getX()-1-b[0].getVision() && x<=b[0].getLocation().getX()-1+b[0].getVision())
-							&& (y>=b[0].getLocation().getY()-b[0].getVision() && y<=b[0].getLocation().getY()+b[0].getVision())) {
+					} else if (x == b[0].getLocation().getX() - 1 && y == b[0].getLocation().getY()) {
+						s += "" + b[0].getDirection() + b[0].getID() + b[0].getTeam();
+					} else if ((x >= b[0].getLocation().getX() - 1 - b[0].getVision()
+							&& x <= b[0].getLocation().getX() - 1 + b[0].getVision())
+							&& (y >= b[0].getLocation().getY() - b[0].getVision()
+									&& y <= b[0].getLocation().getY() + b[0].getVision())) {
 						s += "~~~";
-					}
-					else if (y != 0) {
+					} else if (y != 0) {
 						s += "###";
 					}
 				}
 				s += "\n";
 			}
-		}
-		else if (viewType == 3) {
+		} else if (viewType == 3) {
 
 			for (int y = 0; y <= getHeight(); y++) {
 				s += "" + (char) (64 + y) + " ";
 				for (int x = 0; x < getWidth(); x++) {
 					if (y == 0) {
 						s += " " + (x + 1) + " ";
-					} 
-					else if(x==b[0].getLocation().getX()-1 && y==b[0].getLocation().getY()) {
-						s += ""+b[0].getHealth()+b[0].getID()+b[0].getTeam();
-					}
-					else if((x>=b[0].getLocation().getX()-1-b[0].getVision() && x<=b[0].getLocation().getX()-1+b[0].getVision())
-							&& (y>=b[0].getLocation().getY()-b[0].getVision() && y<=b[0].getLocation().getY()+b[0].getVision())) {
+					} else if (x == b[0].getLocation().getX() - 1 && y == b[0].getLocation().getY()) {
+						s += "" + b[0].getHealth() + b[0].getID() + b[0].getTeam();
+					} else if ((x >= b[0].getLocation().getX() - 1 - b[0].getVision()
+							&& x <= b[0].getLocation().getX() - 1 + b[0].getVision())
+							&& (y >= b[0].getLocation().getY() - b[0].getVision()
+									&& y <= b[0].getLocation().getY() + b[0].getVision())) {
 						s += "~~~";
-					}
-					else if (y != 0) {
+					} else if (y != 0) {
 						s += "###";
 					}
 				}
 				s += "\n";
 			}
->>>>>>> branch 'master' of https://github.com/freenham/MyProject.git
+
 		}
 		return s;
 	}
 
-<<<<<<< HEAD
-	public static void main(String[] a) {
-		World w = new World(10, 10);
-		System.out.println(w.drawTeamMap(null, EAST));
-	}
-
-=======
 	public static void main(String[] args) {
 		World w = new World(10, 10);
 		Boat[] b = new Boat[1];
@@ -180,5 +157,4 @@ public class World {
 		b[0] = bs;
 		System.out.println(w.drawTeamMap(b, 1));
 	}
->>>>>>> branch 'master' of https://github.com/freenham/MyProject.git
 }
