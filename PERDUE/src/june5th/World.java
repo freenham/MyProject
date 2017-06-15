@@ -20,7 +20,7 @@ public class World {
 			height = 4;
 		else if (height > 10)
 			height = 10;
-		map = new Boat[height][width];
+		map = new Object[height][width];
 
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[0].length; j++) {
