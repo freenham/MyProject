@@ -9,7 +9,6 @@ public class StudentAdvance extends Advance{
 
 	@Override
 	public double getPrice() {
-		// TODO Auto-generated method stub
 		return super.getPrice()/2;
 	}
 	
